@@ -32,11 +32,11 @@ class Bejegyzes(models.Model):
 #     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
 
 class User(AbstractUser):
-    name = models.CharField(max_length = 50, unique = True, verbose_name = 'Név:')
+    username = models.CharField(max_length = 50, unique = True, verbose_name = 'Név:')
     password = models.CharField(max_length = 50, verbose_name = 'Jelszó')
     email = models.EmailField(max_length = 100, unique = True, verbose_name = 'E-mail cím')
     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
 
-    USERNAME_FIELD = 'name'
+    USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['password', 'email', 'osztaly_id']
