@@ -1,14 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
-
-def tevekenyseg(request):
-    tevekenyseg_id = get_object_or_404(Tevekenyseg, pk = id)
-    return HttpResponse("tevekenyseg")
-
 def bejegyzesek(request):
-        return HttpResponse("bejegyzesek")
+    return HttpResponse("bejegyzések")
 
-def bejegyzesekFeltoltes(request):
-        return HttpResponse("bejegyzesek Feltoltese")
+def bejegyzesekOsztalyId(request, osztaly_id):
+    return HttpResponse(f"{osztaly_id} bejegyzései")
+
+def bejegyzesFeltoltes(request):
+    return HttpResponse("bejegyzés feltöltése")

@@ -17,19 +17,19 @@ OSZTALY_CHOICES = (
 # Create your models here.
 class Tevekenyseg(models.Model):
     tevekenyseg_id = models.AutoField(primary_key = True, editable = False)
-    tevekenyseg_nev = models.CharField(max_length = 50, verbose_name = "Tevékenység neve")
+    tevekenyseg_nev = models.CharField(max_length = 100, verbose_name = "Tevékenység neve")
     pontszam = models.IntegerField(verbose_name = "Pontszám")
+
+    def __str__(self):
+        return self.tevekenyseg_nev
 
 class Bejegyzes(models.Model):
     tevekenyseg_id = models.ForeignKey(Tevekenyseg, verbose_name ="Tevékenység", on_delete = models.CASCADE)
     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name ="Osztályok")
     allapot = models.CharField(max_length = 50, choices = STATUS_CHOICES, verbose_name ="Állapot")
 
-# class User(models.Model):
-#     name = models.CharField(max_length = 50, verbose_name = 'Név:')
-#     password = models.CharField(max_length = 50, verbose_name = 'Jelszó')
-#     email = models.EmailField(max_length = 100, verbose_name = 'E-mail cím')
-#     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
+    def __str__(self):
+        return f"{self.tevekenyseg_id} | {self.osztaly_id} | {self.allapot}"
 
 class User(AbstractUser):
     username = models.CharField(max_length = 50, unique = True, verbose_name = 'Név:')
@@ -40,3 +40,6 @@ class User(AbstractUser):
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['password', 'email', 'osztaly_id']
+
+    def __str__(self):
+        return self.username
