@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 STATUS_CHOICES = (
     ("0", "Jóvahagyásra vár"),
@@ -24,8 +25,18 @@ class Bejegyzes(models.Model):
     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name ="Osztályok")
     allapot = models.CharField(max_length = 50, choices = STATUS_CHOICES, verbose_name ="Állapot")
 
-class User(models.Model):
-    name = models.CharField(max_length = 50, verbose_name = 'Név:')
+# class User(models.Model):
+#     name = models.CharField(max_length = 50, verbose_name = 'Név:')
+#     password = models.CharField(max_length = 50, verbose_name = 'Jelszó')
+#     email = models.EmailField(max_length = 100, verbose_name = 'E-mail cím')
+#     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
+
+class User(AbstractUser):
+    name = models.CharField(max_length = 50, unique = True, verbose_name = 'Név:')
     password = models.CharField(max_length = 50, verbose_name = 'Jelszó')
-    email = models.EmailField(max_length = 100, verbose_name = 'E-mail cím')
+    email = models.EmailField(max_length = 100, unique = True, verbose_name = 'E-mail cím')
     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
+
+    USERNAME_FIELD = 'name'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = ['password', 'email', 'osztaly_id']
