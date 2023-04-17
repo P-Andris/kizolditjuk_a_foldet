@@ -21,7 +21,7 @@ class Tevekenyseg(models.Models):
 
 class Bejegyzes(models.Model):
     tevekenyseg_id = models.ForeignKey(Tevekenyseg, verbose_name ="Tevékenység", on_delete = models.CASCADE)
-    osztaly_id = models.CharField(max_length = 10, verbose_name ="Osztályok")
+    osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name ="Osztályok")
     allapot = models.CharField(max_length = 50, choices = STATUS_CHOICES, verbose_name ="Állapot")
 
 class User(models.Model):
