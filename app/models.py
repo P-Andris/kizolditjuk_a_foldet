@@ -14,7 +14,7 @@ OSZTALY_CHOICES = (
 )
 
 # Create your models here.
-class Tevekenyseg(models.Models):
+class Tevekenyseg(models.Model):
     tevekenyseg_id = models.AutoField(primary_key = True, editable = False)
     tevekenyseg_nev = models.CharField(max_length = 50, verbose_name = "Tevékenység neve")
     pontszam = models.IntegerField(verbose_name = "Pontszám")
@@ -27,5 +27,5 @@ class Bejegyzes(models.Model):
 class User(models.Model):
     name = models.CharField(max_length = 50, verbose_name = 'Név:')
     password = models.CharField(max_length = 50, verbose_name = 'Jelszó')
-    email = models.EmailField(max_field = 100, verbose_name = 'E-mail cím')
+    email = models.EmailField(max_length = 100, verbose_name = 'E-mail cím')
     osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
