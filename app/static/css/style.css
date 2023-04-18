@@ -1,0 +1,14 @@
+.bejegyzes-form {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+}
+
+.bejegyzes-table {
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.bejegyzes-table tr:nth-child(odd) {
+    background-color: #dddddd;
+}

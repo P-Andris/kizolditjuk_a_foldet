@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejegyzések</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <title>Kizöldítjük a Földet</title>
 </head>
 <body>
-    
+    <main>
+        <header><h2>Kizöldítjük a Földet</h2></header>
+        <aside>
+            <form class="bejegyzes-form" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% comment %} <select id="id_tevekenyseg_id" name="tevekenyseg_id">
+                <select id="id_osztaly_id" name="osztaly_id"> {% endcomment %}
+                <input type="submit" value="Küld">
+            </form>
+        </aside>
+        <article>
+            <h4>Eddigi bejegyzések:</h4>
+            {% if bejegyzesek %}
+                <table class="bejegyzes-table">
+                    <tr>
+                        <th>Osztály</th>
+                        <th>Tevékenység</th>
+                        <th>Pont</th>
+                        <th>Státusz</th>
+                    </tr>
+                    {% for bejegyzes in bejegyzesek %}
+                    <tr>
+                            <td>{{ bejegyzes.osztaly_id }}</td>
+                            <td>{{ bejegyzes.tevekenyseg_id }}</td>
+                            <td>{{ bejegyzes.tevekenyseg_id.pontszam }}</td>
+                            <td>{{ bejegyzes.allapot }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Nincs adat</p>
+            {% endif %}
+        </article>
+        <footer></footer>
+    </main>
 </body>
 </html>
