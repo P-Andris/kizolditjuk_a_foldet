@@ -5,7 +5,7 @@ from django.db.models import Q
 from .forms import BejegyzesForm
 from .models import Bejegyzes, Tevekenyseg, OSZTALY_CHOICES
 
-def bejegyzesek(request):
+def main(request):
     # Form:
     form = BejegyzesForm(request.POST or None)
     if(request.method == "POST"):
@@ -26,7 +26,10 @@ def bejegyzesek(request):
         'osztalyok': osztalyok
     }
 
-    return render(request, "app/bejegyzesek.html", context = context)
+    return render(request, "app/index.html", context = context)
+
+def bejegyzesek(request):
+    return HttpResponse("Bejegyzések")
 
 def bejegyzesekOsztalyId(request, osztaly_id):
     osztaly = None
@@ -42,6 +45,3 @@ def bejegyzesekOsztalyId(request, osztaly_id):
     }
 
     return render(request, "app/osztaly_bejegyzesek.html", context = context)
-
-def bejegyzesFeltoltes(request):
-    return HttpResponse("bejegyzés feltöltése")

@@ -1,14 +1,53 @@
+main {
+    max-width: 75%;
+    margin: auto;
+    text-align: center;
+}
+
+article {
+    max-width: 60%;
+    margin: auto;
+}
+
 .bejegyzes-form {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     border: 1px solid black;
 }
 
 .bejegyzes-table {
-    text-align: center;
-    border-collapse: collapse;
+    overflow-x: auto;
 }
 
-.bejegyzes-table tr:nth-child(odd) {
+.bejegyzes-table table {
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+.bejegyzes-table table tr:nth-child(odd) {
     background-color: #dddddd;
+}
+
+.bejegyzes-table table tr th, .bejegyzes-table table tr td {
+    padding: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .bejegyzes-form {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+    
+    .bejegyzes-form select {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bejegyzes-table table {
+        width: 100%;
+        margin: auto;
+    }
 }
