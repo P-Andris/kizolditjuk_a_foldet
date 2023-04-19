@@ -7,7 +7,7 @@ urlpatterns = [
     path('bejegyzesek/<int:osztaly_id>/', views.bejegyzesekOsztalyId, name = 'bejegyzesek-osztaly_id'),
     
     # POST:
-    path('bejegyzes/', views.bejegyzesFeltoltes, name = 'bejegyzes')
+    # path('bejegyzes/', views.bejegyzesFeltoltes, name = 'bejegyzes')
     
     # path('tevekenysegek/', views.tevekenyseg, name = 'tevekenysegek'),
     # path('bejegyzesek/', views.bejegyzesek, name = 'bejegyzesek'),

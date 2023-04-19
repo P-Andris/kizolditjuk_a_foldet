@@ -6,26 +6,26 @@ from django.contrib.auth.models import AbstractUser
 #     ("1", "jovahagyott")
 # )
 
-# OSZTALY_CHOICES = (
-#     ("0", "SZF1A"),
-#     ("1", "SZF1B"),
-#     ("2", "SZF2"),
-#     ("3", "nSZF1A"),
-#     ("4", "nSZF1B")
-# )
+OSZTALY_CHOICES = (
+    ("0", "SZF1A"),
+    ("1", "SZF1B"),
+    ("2", "SZF2"),
+    ("3", "nSZF1A"),
+    ("4", "nSZF1B")
+)
 
 STATUS_CHOICES = (
     ("Jóvahagyásra vár", "Jóvahagyásra vár"),
     ("Jóváhagyott", "Jóváhagyott")
 )
 
-OSZTALY_CHOICES = (
-    ("SZF1A", "SZF1A"),
-    ("SZF1B", "SZF1B"),
-    ("SZF2", "SZF2"),
-    ("nSZF1A", "nSZF1A"),
-    ("nSZF1B", "nSZF1B")
-)
+# OSZTALY_CHOICES = (
+#     ("SZF1A", "SZF1A"),
+#     ("SZF1B", "SZF1B"),
+#     ("SZF2", "SZF2"),
+#     ("nSZF1A", "nSZF1A"),
+#     ("nSZF1B", "nSZF1B")
+# )
 
 # Create your models here.
 class Tevekenyseg(models.Model):
