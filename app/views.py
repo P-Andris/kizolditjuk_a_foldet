@@ -1,12 +1,11 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.db.models import Q
+from django.shortcuts import render
+from django.db.models import Q, Sum, Count
 
 from .forms import BejegyzesForm
 from .models import Bejegyzes, Tevekenyseg, OSZTALY_CHOICES
 
 def main(request):
-    # Form:
     form = BejegyzesForm(request.POST or None)
     if(request.method == "POST"):
         if(form.is_valid()):
@@ -19,17 +18,26 @@ def main(request):
     tevekenysegek = Tevekenyseg.objects.all()
     osztalyok = OSZTALY_CHOICES
 
+    osszpontszamok = Bejegyzes.objects.values('osztaly_id').annotate(osszpontszam = Sum('tevekenyseg_id_id__pontszam')).filter(Q(allapot__exact = 'Jóváhagyott')).order_by('-osszpontszam')
+
     context = {
         'form': form,
         'bejegyzesek': bejegyzesek,
         'tevekenysegek': tevekenysegek,
-        'osztalyok': osztalyok
+        'osztalyok': osztalyok,
+        'osszpontszamok': osszpontszamok
     }
 
     return render(request, "app/index.html", context = context)
 
 def bejegyzesek(request):
-    return HttpResponse("Bejegyzések")
+    bejegyzesek = Bejegyzes.objects.all()
+
+    context = {
+        'bejegyzesek': bejegyzesek
+    }
+
+    return render(request, "app/bejegyzesek.html", context = context)
 
 def bejegyzesekOsztalyId(request, osztaly_id):
     osztaly = None
@@ -37,7 +45,7 @@ def bejegyzesekOsztalyId(request, osztaly_id):
         if(int(key) == osztaly_id - 1):
             osztaly = value
 
-    bejegyzesek = None
+    bejegyzesek = Bejegyzes.objects.filter(Q(osztaly_id__exact = osztaly_id))
 
     context = {
         'osztaly': osztaly,

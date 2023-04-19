@@ -38,7 +38,7 @@ class Tevekenyseg(models.Model):
 
 class Bejegyzes(models.Model):
     tevekenyseg_id = models.ForeignKey(Tevekenyseg, on_delete = models.CASCADE, verbose_name = "Tevékenység")
-    osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztályok")
+    osztaly_id = models.CharField(max_length = 10, choices = OSZTALY_CHOICES, verbose_name = "Osztály")
     allapot = models.CharField(max_length = 50, choices = STATUS_CHOICES, default = "Jóvahagyásra vár", verbose_name = "Állapot")
 
     def __str__(self):

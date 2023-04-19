@@ -4,8 +4,8 @@ main {
     text-align: center;
 }
 
-article {
-    max-width: 60%;
+aside, article {
+    max-width: 100%;
     margin: auto;
 }
 
@@ -16,20 +16,19 @@ article {
     border: 1px solid black;
 }
 
-.bejegyzes-table {
+.osszpontszam-table, .bejegyzes-table {
     overflow-x: auto;
 }
 
-.bejegyzes-table table {
+table {
     border-collapse: collapse;
-    overflow-x: auto;
 }
 
-.bejegyzes-table table tr:nth-child(odd) {
+table tr:nth-child(odd) {
     background-color: #dddddd;
 }
 
-.bejegyzes-table table tr th, .bejegyzes-table table tr td {
+table tr th, table tr td {
     padding: 5px;
 }
 
@@ -46,8 +45,7 @@ article {
 }
 
 @media screen and (max-width: 600px) {
-    .bejegyzes-table table {
+    table {
         width: 100%;
-        margin: auto;
     }
 }

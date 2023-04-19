@@ -15,10 +15,29 @@
             <form class="bejegyzes-form" method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                {% comment %} <select id="id_tevekenyseg_id" name="tevekenyseg_id">
-                <select id="id_osztaly_id" name="osztaly_id"> {% endcomment %}
                 <input type="submit" value="Küld">
             </form>
+        </aside>
+        <aside>
+            <h4>Összpontszámok</h4>
+            <div class="osszpontszam-table">
+                <table>
+                    <tr>
+                        <th>Osztály</th>
+                        <th>Pont</th>
+                    </tr>
+                    {% for osszpontszam in osszpontszamok %}
+                        <tr>
+                            {% for key, value in osztalyok %}
+                                {% if key == osszpontszam.osztaly_id %}
+                                    <td>{{ value }}</td>
+                                {% endif %}
+                            {% endfor %}
+                            <td>{{ osszpontszam.osszpontszam }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </aside>
         <article>
             <h4>Eddigi bejegyzések:</h4>
