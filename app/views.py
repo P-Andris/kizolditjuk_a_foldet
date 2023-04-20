@@ -32,9 +32,11 @@ def main(request):
 
 def bejegyzesek(request):
     bejegyzesek = Bejegyzes.objects.all()
+    osztalyok = OSZTALY_CHOICES
 
     context = {
-        'bejegyzesek': bejegyzesek
+        'bejegyzesek': bejegyzesek,
+        'osztalyok' : osztalyok
     }
 
     return render(request, "app/bejegyzesek.html", context = context)

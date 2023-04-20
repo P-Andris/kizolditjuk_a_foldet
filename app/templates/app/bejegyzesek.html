@@ -10,7 +10,33 @@
     <main>
         <header><h3>Bejegyzések</h3></header>
         <article>
-            
+            <h4>Eddigi bejegyzések:</h4>
+            {% if bejegyzesek %}
+                <div class="bejegyzes-table">
+                    <table>
+                        <tr>
+                            <th>Osztály</th>
+                            <th>Tevékenység</th>
+                            <th>Pont</th>
+                            <th>Státusz</th>
+                        </tr>
+                        {% for bejegyzes in bejegyzesek %}
+                            <tr>
+                                {% for key, value in osztalyok %}
+                                    {% if key == bejegyzes.osztaly_id %}
+                                        <td>{{ value }}</td>
+                                    {% endif %}
+                                {% endfor %}
+                                <td>{{ bejegyzes.tevekenyseg_id }}</td>
+                                <td>{{ bejegyzes.tevekenyseg_id.pontszam }}</td>
+                                <td>{{ bejegyzes.allapot }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% else %}
+                <p>Nincs adat</p>
+            {% endif %}
         </article>
     </main>
 </body>
